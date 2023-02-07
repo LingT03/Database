@@ -1,7 +1,7 @@
 """
 CS3810: Principles of Database Systems
 Instructor: Thyago Mota
-Student: 
+Student: Ling Thang 
 Description: A simple FMS for projects
 """
 
@@ -132,8 +132,30 @@ class ProjectCRUD(CRUD):
         * else, return None
     """
     def read(self, key) -> Project: 
-        return None
-
+        result = None
+        print(key)
+        try: 
+            file = open(os.path.join("db", PRJ_FILE_NAME), "r")
+            for line in file: 
+                line = line.strip()
+                cols = line.split(",")
+                title = cols[0]
+                if title.lower() == str(key).lower():
+                    result = Project(title, cols[1], cols[2], int(cols[3]), [] )
+                    break
+        finally: 
+            file.close()
+        if result:
+            try: 
+                file = open(os.path.join("db", key, EMP_FILE_NAME), "r")
+                for line in file: 
+                    line = line.strip()
+                    cols = line.split(",")
+                    result.employees.append(Employee(int(cols[0]), cols[1], cols[2]))
+            finally: 
+                file.close()
+        return result
+                    
     def delete(self, key) -> bool: 
         result = False
         if self.read(key): 
@@ -165,20 +187,44 @@ class DB:
         * if the employee is not found, return None
     """
     def find_employee(id):
-        return None
-       
+        result = None
+        try: 
+            file = open(os.path.join("db", PRJ_FILE_NAME), "r")
+            for line in file: 
+                line = line.strip()
+                cols = line.split(",")
+                title = cols[0]
+            with open(os.path.join("db", title, EMP_FILE_NAME), "r") as searchfile:
+                for empline in searchfile:
+                    empline = empline.strip()
+                    empcols = empline.split(",")
+                    empid = int(empcols[0])
+                    if empid == id:
+                        result = empid
+                        break
+                    else:
+                        return None
+        finally: 
+            file.close()
+        return result
+
 def menu(): 
-    print("1. Create")
+    print("\n1. Create")
     print("2. Read")
     print("3. Delete")
-    print("4. Quit")
+    print("4. Quit\n")
     
 if __name__ == "__main__":
+
+    print("\nWelcome to the Project Management System!")
+    print("==========================================\n")
+    print("     Here are your avaiable options:")
 
     prjCRUD = ProjectCRUD()
     while (True):
         menu()
-        option = int(input("? "))
+        option = int(input("Please enter an option: "))
+        print("\n")
         if option == 1:
             title = input("title? ")
             start = input("start (yyyy-mm-dd)? ")
@@ -198,6 +244,12 @@ if __name__ == "__main__":
                     department = input("department? ")
                     employee = Employee(id, name, department)
                     employees.append(employee)
+                    print("Press enter if you are done entering employees!")
+                    choice = input("Do you want to add another employee? (y/n) ")
+                    if choice.lower() == 'n':
+                        break
+                    else :
+                        continue
             project = Project(title, start, end, budget, employees)
             if prjCRUD.create(project): 
                 print("New project successfully created!")
@@ -206,8 +258,9 @@ if __name__ == "__main__":
         elif option == 2:
             title = input("title? ")
             project = prjCRUD.read(title)
+            print("Here is the Project Information:")
             if project: 
-                print(project)
+                print("\n" + str(project))
                 for emp in project.employees:
                     print('\t' + str(emp))
             else:
@@ -222,4 +275,4 @@ if __name__ == "__main__":
             break
         else:
             print("Invalid option!")
-    print("Bye!")
+    print("GoodBye! See you next time!")
