@@ -87,17 +87,23 @@ class Student(Entity):
 class DB: 
 
     def list_courses() -> list: 
-        """
-        TODO #1: list all courses
-        """
-        pass
-
+        with open(os.path.join("db", "courses.csv")) as file:
+            courses = []
+            for line in file:
+                prefix, number, discription = line.strip().split(",")
+                courses.append(Course(prefix, int(number), discription))
+            return courses
+        
     def list_sections(course) -> list: 
-        """
-        TODO #2: list all sections of a course
-        """
-        pass
-
+        sections = []
+        with open(os.path.join("db", course, "sections.csv"), "r") as file: 
+            for line in file: 
+                line = line.strip()
+                year, semester, number, instructor = line.split(",")
+                section = Section(course, int(year), semester, number, instructor)
+                sections.append(section)
+            return sections
+    
     def list_students(section) -> list:
         """
         TODO #3: list all students enrolled in a section
@@ -121,16 +127,16 @@ if __name__ == "__main__":
 
     while (True):
         menu()
-        option = int(input("? "))
+        option = int(input("\n Please enter an option: "))
         if option == 1:
-            print("Courses:")
+            print("\nCourses:")
             for course in DB.list_courses():
-                print(course)
+                print("\t" + str(course))
             print()
         elif option == 2:
             prefix = input("prefix? ")
             code = int(input("code? "))
-            course = Course(prefix, code, "")
+            course = str(prefix) + str(code)
             print("Sections of " + str(course) + ":")
             for section in DB.list_sections(course):
                 print(section)

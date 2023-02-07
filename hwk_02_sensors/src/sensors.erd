@@ -1,15 +1,43 @@
 // CS3810: Principles of Database Systems
 // Instructor: Thyago Mota
-// Student: 
+// Student: Ling Thang
 // Description: An ERD for Sensors
 
 erdiagram sensors
-notation=crowsfoot
+notation = crowsfoot
 
-entity Sensors { }
-entity Types { }
-entity Manufacturers { }
-entity Measurements { }
-entity Readings { }
+entity Sensors { 
+    
+}
 
+entity Types { 
+   
+}
 
+entity Manufacturers { 
+    
+}
+
+entity Measurements { 
+   
+}
+
+entity Readings {
+      
+}
+
+relationship Use {
+    Sensors [1..1] -> Types [1..N]
+}
+
+relationship Possess {
+    Sensors [1..N] -> Measurements [1..N]
+}
+
+relationship Builds {
+    Sensors [0..N] -> Manufacturers [1..1]
+}
+
+relationship Records {
+    Measurements [1..N] -> Readings [0..N]
+}

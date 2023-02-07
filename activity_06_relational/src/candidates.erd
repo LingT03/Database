@@ -15,3 +15,8 @@ entity JobPositions {
 relationship applies_for {
     Candidates[0..N] -> JobPositions[0..N]
 }
+/*
+    Candidates(ssn: int, name: string)
+    JobPositions(number: int, title: string, department: string)
+    applications(ssn: int, Position_number: int)
+*/
