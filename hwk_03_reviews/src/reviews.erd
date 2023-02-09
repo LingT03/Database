@@ -28,14 +28,14 @@ entity Reviewers {
     interest_topic
 }
 
-relationship writes {
+relationship Writes {
     Authors [1..N] -> Papers [0..N]
     Contact_Author
 }
 
-relationship rates {
+relationship Reviews {
     Reviewers [1..N] -> Papers [0..N]
-    Rating_techinical_merit
+    Rating_techinical_merit 
     Rating_readibility 
     Rating_originiality 
     Rating_relevance
