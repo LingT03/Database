@@ -1,0 +1,17 @@
+# Part A 
+
+Employees(id:int, name: string, wage: int, sex: int, suid: int)
+Supervisors(empid: int, salary: doubel)
+Working_Hours(emid: int, date: date, start: time, end: time, hour: int)
+
+# Part C
+
+1. Selection_sex=1_(Employees)
+2. PI_name_(Selection_sex=2_(Employees))
+3. Supervisors := PI(Supervisor NJ Employees)
+4.
+5.
+6.
+7.
+8.
+9.
