@@ -8,7 +8,7 @@ notation = crowsfoot
 
 entity Papers { 
     id key
-    title 
+    title
     abstract
     efile_name
 }
