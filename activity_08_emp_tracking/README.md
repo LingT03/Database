@@ -24,10 +24,6 @@ Your first task in this activity is to derive a Relational Model from the concep
 
 !!Any attribute domain that is not primitive (integer, floating-point, text, char, boolean, date, or time) must be explicitly defined in your solution.!!
 
-/*
-
-*/
-
 ## Part B: Relational Algebra
 
 Use relational algebra to answer the queries listed in this section.  To reduce repetitive work, you can use := to create useful temporary relations (see section 2.4.13, page 51 of the textbook).  For example, let’s say you are constantly having to join relations A and B to answer different queries.  You can assign the natural join of A and B to C using C := A ⋈ B and then reuse C.   
