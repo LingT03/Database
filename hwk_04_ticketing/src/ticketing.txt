@@ -3,13 +3,13 @@ Instructor: Thyago Mota
 Student: Ling Thang 
 Description: An Relational Schema for a Ticketing System
 
-Event(event_code*, title, season, year, venue_id*)
-EventDates (event_date*, event_time*, event_code*)
-Venue(venue_id*, name)
-Sector(sector_name*, venue_id*, total_seats)
-Seat(seat_number*, sector_name*, status, sell_price) 
-Customer(email*, name, phone, credit_card, billing_address)
-Booking(booking_id*, email*, event_code*,  event_date*, event_time*, venue_id*, sector_name*, seat_id*)
+Event(event_code*: Integer, title: String, season: String, year: Integer, venue_id*: Integer)
+EventDates (event_date*: Date, event_time*: time, event_code*: Integer, venue_id*: Integer)
+Venue(venue_id*: Integer, name: String)
+Sector(sector_name*: String, venue_id*: Integer, total_seats: Integer)
+Seat(seat_number*: Integer, sector_name*: String, status: Boolean, sell_price: Float) 
+Customer(email*: String, name: String, phone: Integer, credit_card: Integer, billing_address: String)
+Booking(booking_id*: Integer, email*: String, event_code*: Integer,  event_date*: Date, event_time*: Time, venue_id*: Integer, sector_name*: String, seat_id*: Integer)
 
 Bonus Point:
 
