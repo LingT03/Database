@@ -5,7 +5,7 @@
 
 CREATE DATABASE astronauts;
 
-/c astronauts; 
+/c astronauts
 
 CREATE TABLE astronauts (
     id SERIAL PRIMARY KEY,
@@ -22,38 +22,36 @@ CREATE TABLE astronauts (
     Flights INT NOT NULL,
 );
 
-copy Astronauts 
-  (lastName,firstName,suffix,gender,birth,city,state,country,status,daysInSpace,Flights)
-    from /Users/lingthang/CSdatabase/activity_10_astronauts/sql/astronauts.csv with DELIMITER ',' CSV HEADER;
+\copy astronauts 
+  (lastName, firstName, suffix, gender, birth, city, state, country, status, daysInSpace, Flights)
+    from /var/lib/postgresql/data/astronauts.csv DELIMITER ',' HEADER;
 
-/*
-a) the total number of astronauts. 
 
-b) the total number of American astronauts. 
+-- a) the total number of astronauts. 
+    SELECT COUNT(*) FROM astronauts;
+-- b) the total number of American astronauts. 
+    Select COUNT(*) FROM astronauts WHERE country = 'USA';
+-- c) the list of nationalities of all astronauts in alphabetical order. 
+    SELECT DISTINCT country FROM astronauts ORDER BY country; -- or you can use 1 instead of country because 1 is also the only column in the table
+-- d) all astronaut names ordered by last name (use the format Last Name, First Name, Suffix to display the names). 
+    SELECT CONCAT(lastName, ', ', firstName, ',', suffix) FROM astronauts ORDER BY lastName;
+-- e) the total number of astronauts by gender. 
+    SELECT COUNT(*) AS total FROM astronaut GROUP BY gender;
+-- f) the total number of female astronauts that are still active. 
 
-c) the list of nationalities of all astronauts in alphabetical order. 
+-- g) the total number of American female astronauts that are still active. 
 
-d) all astronaut names ordered by last name (use the format Last Name, First Name, Suffix to display the names). 
+-- h) the list of all American female astronauts that are still active ordered by last name (use the same name format used in d). 
 
-e) the total number of astronauts by gender. 
+-- i) the list of Chinese astronauts, displaying only their names and ages (use the same name format used in d). 
 
-f) the total number of female astronauts that are still active. 
+-- j) the total number of astronauts by country. 
 
-g) the total number of American female astronauts that are still active. 
+-- k) the total number of American astronauts per state ordered by the totals in
+-- descending order. 
 
-h) the list of all American female astronauts that are still active ordered by last name (use the same name format used in d). 
+-- l) the total number of astronauts by statuses (i.e., active or retired). 
 
-i) the list of Chinese astronauts, displaying only their names and ages (use the same name format used in d). 
+-- m) name and age of all non-American astronauts in alphabetical order (use the same name format used in d). 
 
-j) the total number of astronauts by country. 
-
-k) the total number of American astronauts per state ordered by the totals in
-descending order. 
-
-l) the total number of astronauts by statuses (i.e., active or retired). 
-
-m) name and age of all non-American astronauts in alphabetical order (use the same name format used in d). 
-
-n) the average age of all American astronauts that are still active. 
-
-*/
+-- n) the average age of all American astronauts that are still active. 
