@@ -1,32 +1,32 @@
 erdiagram act4
 notation = crowsfoot
 
-entity workshop {
+entity Workshop {
     name
     date
 }
 
-entity participants {
+entity Participants {
     name
 }
 
-entity rooms {
+entity Rooms {
     floor 
     room_number
 }
 
-entity venue {
+entity Venue {
     name
 }
 
 relationship has {
-    workshop [1..N] -> participants[0..N]
+    Workshop [1..N] -> Participants[0..N]
 }
 
 relationship host {
-    workshop[0..N] -> rooms[1..1]
+    Workshop[0..N] -> Rooms[1..1]
 }
 
 relationship hold {
-    venue[1..1] -> rooms[1..N]
+    Venue[1..1] -> Rooms[1..N]
 }
