@@ -38,7 +38,7 @@ CREATE TABLE astronauts (
 -- e) the total number of astronauts by gender. 
     SELECT COUNT(*) AS total FROM astronaut GROUP BY gender;
 -- f) the total number of female astronauts that are still active. 
-
+    SELECT COUNT(*) 
 -- g) the total number of American female astronauts that are still active. 
 
 -- h) the list of all American female astronauts that are still active ordered by last name (use the same name format used in d). 
