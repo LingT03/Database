@@ -16,7 +16,7 @@ DROP TABLE IF EXISTS Occupations;
         "job_family" VARCHAR(100)
     );
 -- TODO: populate table Occupations
-\COPY Occupations(Code, Occupation, "Job Family") FROM '/var/lib/postgresql/data/occupations.csv' DELIMITER ',' QUOTE '"' CSV HEADER;
+\COPY Occupations(Code, Occupation, "job_family") FROM '/var/lib/postgresql/data/occupations.csv' DELIMITER ',' QUOTE '"' CSV HEADER;
 
 -- TODO: a) the total number of occupations (expect 1016).
     SELECT COUNT (*) FROM occupations;
