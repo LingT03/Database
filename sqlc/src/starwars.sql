@@ -154,14 +154,21 @@ INSERT INTO FilmRatings VALUES (6716,1,2), (6716,2,5), (29200,2,4), (29200,4,5),
 (76634,1,4), (76634,2,2), (76634,3,3), (76634,4,2), (76634,5,3), (47673,1,4), (47673,2,2), (47673,3,4), (47673,4,1), (47673,5,4), (62217,1,2), (62217,3,1), (62217,4,1), (62217,5,5), (68276,1,2), (68276,2,3), (68276,3,1), (68276,4,5), (68276,5,3);
 
 -- a) the number of star wars films
+    SELECT COUNT(*) FROM Films; -- good 
 
 -- b) the age group (description) that has the most fans
 
+    SELECT age FROM Fans GROUP BY age ORDER BY COUNT(age) DESC LIMIT 4;
+    Select * FROM AgeGroups;
+
 -- c) the education level (description) with the least number of fans
+    SELECT 
 
 -- d) the name of the star wars characters in alphabetical order
+    Select * FROM Characters ORDER BY name; -- good 
 
 -- e) the star wars characters that have no fan ratings 
+    Select * FROM Characters WHERE rating IS NULL;
 
 -- f) the top 3 star wars characters based on fan ratings, showing their names and the average rating (rounded to 2 decimals) that they received 
 
