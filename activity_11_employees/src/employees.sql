@@ -81,13 +81,21 @@
     WHERE salary > (SELECT salary FROM employees WHERE name = 'Jose Caipirinha');
 
 -- TODO: m) list the left outer join of Employees and Departments (use the ON clause to match by department code); how does the result of this query differs from query ‘i’?
-
+    SELECT * FROM employees A
+    LEFT JOIN departments B
+    ON A.deptCode = B.code;
 
 -- TODO: n) from query ‘m’, how would you do the left anti-join?
-
+    SELECT * FROM employees A
+    LEFT JOIN departments B
+    ON A.deptCode = B.code
+    WHERE B.code IS NULL;
 
 -- TODO: o) show the number of employees per department.
-
+    SELECT deptCode, COUNT(*) FROM employees
+    GROUP BY deptCode;
 
 -- TODO: p) same as query ‘o’ but I want to see the description of each department (not just their codes).
-
+    SELECT * from Employees A 
+    FULL JOIN Departments B
+    on A.deptCode = B.code;
