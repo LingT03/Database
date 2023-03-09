@@ -61,20 +61,20 @@
     WHERE A.deptCode = b.code;
 
 -- TODO: j) same as previous query but project name and salary of the employees plus the description of their departments.
-    SELECT name, salary, "description"
+    SELECT name, salary, description
     FROM employees A
     INNER JOIN departments b
     ON  A.deptCode = B.code;
     
 -- TODO: k) same as previous query but only the employees that earn less than 60000.
-    SELECT name, salary, "description"
+    SELECT name, salary, description
     FROM employees A
     INNER JOIN departments b
     ON  A.deptCode = B.code
     WHERE salary < 60000;
 
 -- TODO: l) same as query ‘i’  but only the employees that earn more than ‘Jose Caipirinha’.
-    SELECT name, salary, "description"
+    SELECT name, salary, description
     FROM employees A
     INNER JOIN departments b
     ON  A.deptCode = B.code
@@ -86,6 +86,9 @@
     ON A.deptCode = B.code;
 
 -- TODO: n) from query ‘m’, how would you do the left anti-join?
+    SELECT * FROM employees A WHERE deptcode is NULL;
+
+    -- Option 2
     SELECT * FROM employees A
     LEFT JOIN departments B
     ON A.deptCode = B.code
@@ -94,6 +97,13 @@
 -- TODO: o) show the number of employees per department.
     SELECT deptCode, COUNT(*) FROM employees
     GROUP BY deptCode;
+
+    -- Option 2
+    SELECT description, COUNT(*) as total 
+    FROM employees A
+    INNER JOIN departments B
+    ON A.deptCode = B.code
+    group by B.code;
 
 -- TODO: p) same as query ‘o’ but I want to see the description of each department (not just their codes).
     SELECT * from Employees A 
