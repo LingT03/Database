@@ -192,20 +192,28 @@ INSERT INTO FilmRatings VALUES (6716,1,2), (6716,2,5), (29200,2,4), (29200,4,5),
     SELECT * from CharacterRatings WHERE rating IS NULL;
 
 -- f) the top 3 star wars characters based on fan ratings, showing their names and the average rating (rounded to 2 decimals) that they received 
+    
 
 -- g) The ids of the fans that gave a rating of 1 for "Darth Vader", in ascending order, so that they be banned from future star wars views
 
+
 -- h) the top rated star wars film by the fans 
+
 
 -- j) the top rated film by fans with income '$150,000+'
 
+
 -- k) the number of ratings AND the average rating received by "Princess Leia", rounded to 2 decimals
+
 
 -- l) the average rating of "Star Wars: Episode V The Empire Strikes Back", rounded to 2 decimals
 
+
 -- m) the name of the character that received the least number of ratings 
 
+
 -- n) the favorite character according the yongest fan audience
+
 
 -- o) the income levels (descriptions) that has at least 100 fans, ordered by income sequential number
 
