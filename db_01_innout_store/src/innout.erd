@@ -6,3 +6,41 @@
 erdiagram innout
 notation=crowsfoot
 
+entity Customers{
+    CustomerID key
+    Name  
+    Gender 
+}
+
+entity Items{
+    ItemCode key
+    Description 
+    Price
+    CategoryID
+}
+
+entity Categories{
+    CategoryCode key 
+    Description 
+}
+
+entity Sales{
+    SaleID key
+    CustomerID 
+    SaleDateTime 
+    Quantity
+    TotalPrice 
+}
+
+relationship Buys{
+    Customers [0..N] -> Items [0..N]
+}
+
+relationship BelongsTo{
+    Items [0..N] -> Categories [0..N]
+}
+
+relationship Makes{
+    Sales [0..N] -> Customers [0..N]
+}
+

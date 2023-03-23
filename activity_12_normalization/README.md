@@ -65,9 +65,23 @@ From the invoice, we can derive the following unnormalized (UNF) relation:
 
 ![pic5.png](pics/pic5.png)
 
+**NOTES:**
+
+
+**Functional Dependencies:**
+
+
+
+Invoices( date , petName*, description*, CustName*, amt)
+Customers(custName*, custAddress)
+
 Normalize the invoice relation to 3NF.  Assume, based on the previous exercise, that each pet can be uniquely identified by an ID and that each procedure also has an unique ID. Also, consider adding an ID to uniquely identify a customer, pet and procedure. 
 
-
+Solution: 
+'''
+key is: {num, date, petName}
+num -> date, custName, petName (2NF violation)
+'''
 
  
 
