@@ -1,6 +1,6 @@
 -- CS3810: Principles of Database Systems
 -- Instructor: Thyago Mota
--- Student: 
+-- Student: Ling Thang
 -- Description: Star Wars Database (SQL Competition)
 
 CREATE DATABASE starwars;
@@ -156,15 +156,72 @@ INSERT INTO FilmRatings VALUES (6716,1,2), (6716,2,5), (29200,2,4), (29200,4,5),
 -- TODO: answer a minimum of 5 of the 7 questions below; you can get up to 7 points in this homework if you get ALL queries right
 
 -- h) the top rated star wars film by the fans 
+    SELECT Films.title, ROUND(AVG(FilmRatings.rating),2) as avg_rating
+    FROM Films
+    INNER JOIN FilmRatings ON Films.id = FilmRatings.film
+    GROUP BY Films.title
+    ORDER BY avg_rating DESC
+    -- checked ^^^
 
 -- j) the top rated film by fans with income '$150,000+'
+    SELECT Films.title, ROUND(AVG(FilmRatings.rating),2) as avg_rating
+    FROM Films
+    INNER JOIN FilmRatings ON Films.id = FilmRatings.film
+    INNER JOIN Fans ON FilmRatings.fan = Fans.id
+    WHERE Fans.income = 4 OR Fans.income = 5
+    GROUP BY Films.title
+    ORDER BY avg_rating DESC
+    -- checked ^^^
 
 -- k) the number of ratings AND the average rating received by "Princess Leia", rounded to 2 decimals
+    SELECT Characters.name, COUNT(CharacterRatings.rating), ROUND(AVG(CharacterRatings.rating), 2) 
+    FROM Characters
+    INNER JOIN CharacterRatings ON Characters.id = CharacterRatings.character
+    WHERE Characters.name = 'Princess Leia'
+    GROUP BY Characters.name
+    -- checked ^^^
 
 -- l) the average rating of "Star Wars: Episode V The Empire Strikes Back", rounded to 2 decimals
+    SELECT Films.title, ROUND(AVG(FilmRatings.rating), 2) as avg_rating
+    FROM Films
+    INNER JOIN FilmRatings ON Films.id = FilmRatings.film
+    WHERE Films.title = 'Star Wars: Episode V The Empire Strikes Back'
+    GROUP BY Films.title
+    -- checked ^^^
 
 -- m) the name of the character that received the least number of ratings 
+    SELECT Characters.name, COUNT(CharacterRatings.rating) as num_ratings
+    FROM Characters
+    INNER JOIN CharacterRatings ON Characters.id = CharacterRatings.character
+    GROUP BY Characters.name
+    ORDER BY num_ratings ASC
+    LIMIT 1
+    -- checked ^^^
 
 -- n) the favorite character according the yongest fan audience
+    SELECT Characters.name, COUNT(CharacterRatings.rating) as num_ratings
+    FROM Characters
+    INNER JOIN CharacterRatings ON Characters.id = CharacterRatings.character
+    INNER JOIN Fans ON CharacterRatings.fan = Fans.id
+    WHERE Fans.age = 1
+    GROUP BY Characters.name
+    ORDER BY num_ratings DESC
+    LIMIT 1
+    -- checked ^^^
 
+ 
 -- o) the income levels (descriptions) that has at least 100 fans, ordered by income sequential number
+    SELECT Fans.income, IncomeLevels.description, COUNT(IncomeLevels.description)
+    FROM Fans
+    INNER JOIN IncomeLevels ON Fans.income = IncomeLevels.seq
+    GROUP BY IncomeLevels.description, Fans.income
+    HAVING COUNT(IncomeLevels.description) >= 100
+    ORDER BY Fans.income ASC
+    -- checked ^^^
+
+    SELECT Fans.income, IncomeLevels.description, COUNT(IncomeLevels.description)
+    FROM Fans
+    INNER JOIN IncomeLevels ON Fans.income = IncomeLevels.seq
+    GROUP BY IncomeLevels.description, Fans.income
+    ORDER BY Fans.income ASC
+    -- Displays all income levels with their count but none have at least 100 fans
