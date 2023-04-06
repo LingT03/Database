@@ -13,7 +13,7 @@ Next, create a virtual environment and install the following modules:
 ```
 psycopg2
 configparser
-sqlachemy
+sqlalchemy
 ```
 
 After installing the required modules, write the following ConfigFile.properties file: 
