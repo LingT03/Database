@@ -10,13 +10,12 @@ params = {
 
 conn = psycopg2.connect(**params)
 if conn:
-    print('Connection to Postgres database ' +
-          params['dbname'] + ' was successful!')
+    print('Connection to Postgres database ' +params['dbname'] + ' was successful!')
 
     cur = conn.cursor()
     sql = 'SELECT id, name FROM employees'
     cur.execute(sql)
-    for row in cur.fetchall():
+    for row in cur.fetchall(): 
         print(row)
 
     print('Bye!')
