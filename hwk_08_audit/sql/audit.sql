@@ -21,8 +21,21 @@ CREATE TABLE EmployeesAudit (
 );
 
 --- CREATE FUNCTION employee_audit_after_insert() RETURNS TRIGGER
+CREATE FUNCTION employee_audit_after_insert() RETURNS TRIGGER
+LANGUAGE plpgsql
+AS $$
+BEGIN
+    INSERT INTO EmployeesAudit (date, descr) VALUES (now(), '(' || NEW.id || ', ' || NEW.name || ')');
+    RETURN NEW;
+END;
+$$;
 
 -- CREATE TRIGGER employee_audit
+CREATE TRIGGER employee_audit 
+AFTER INSERT ON Employees 
+FOR EACH ROW 
+EXECUTE PROCEDURE employee_audit_after_insert();
+
 
 -- use the following insert statements to test your trigger
 INSERT INTO Employees VALUES (101, 'Samuel Adams'); 
