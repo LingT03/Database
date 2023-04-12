@@ -45,3 +45,23 @@ EXECUTE PROCEDURE employee_audit_after_insert();
 INSERT INTO Employees VALUES (101, 'Samuel Adams'); 
 INSERT INTO Employees VALUES (202, 'Adolph Coors');
 INSERT INTO Employees VALUES (303, 'Arthur Guinness');
+
+/*
+
+audit=# select * from employees;
+ id  |      name       
+-----+-----------------
+ 101 | Samuel Adams
+ 202 | Adolph Coors
+ 303 | Arthur Guinness
+(3 rows)
+
+audit=# select * from employeesaudit;
+ seq |    date    |         descr          
+-----+------------+------------------------
+   1 | 2023-04-11 | (101, Samuel Adams)
+   2 | 2023-04-11 | (202, Adolph Coors)
+   3 | 2023-04-11 | (303, Arthur Guinness)
+(3 rows)
+
+*/
