@@ -212,16 +212,19 @@ INSERT INTO FilmRatings VALUES (6716,1,2), (6716,2,5), (29200,2,4), (29200,4,5),
  
 -- o) the income levels (descriptions) that has at least 100 fans, ordered by income sequential number
     SELECT Fans.income, IncomeLevels.description, COUNT(IncomeLevels.description)
-    FROM Fans
-    INNER JOIN IncomeLevels ON Fans.income = IncomeLevels.seq
+    FROM Fans INNER JOIN IncomeLevels 
+    ON Fans.income = IncomeLevels.seq
     GROUP BY IncomeLevels.description, Fans.income
     HAVING COUNT(IncomeLevels.description) >= 100
     ORDER BY Fans.income ASC
     -- checked ^^^
 
     SELECT Fans.income, IncomeLevels.description, COUNT(IncomeLevels.description)
-    FROM Fans
-    INNER JOIN IncomeLevels ON Fans.income = IncomeLevels.seq
+    FROM Fans INNER JOIN IncomeLevels 
+    ON Fans.income = IncomeLevels.seq
     GROUP BY IncomeLevels.description, Fans.income
     ORDER BY Fans.income ASC
     -- Displays all income levels with their count but none have at least 100 fans
+
+-- p) the average rating of each film, ordered by the average rating in descending order
+    SELECT 
