@@ -54,7 +54,7 @@ def list_op(conn):
     pass
 
 # TODO: reserve a room on a specific date and period, also saving the user who's the reservation is for
-def reserve_op(conn): 
+def reserve_op(conn):
     pass
 
 # TODO: delete a reservation given its code
