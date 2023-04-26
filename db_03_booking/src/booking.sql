@@ -96,4 +96,3 @@ ORDER BY A.code DESC;
 -- once your view is created and working, run the following line
 GRANT ALL ON TABLE ReservationsView TO booking;
 
-This is a test segment of the code 
