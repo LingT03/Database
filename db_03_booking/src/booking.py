@@ -21,7 +21,8 @@ def db_connect():
     config.read('ConfigFile.properties')
     params = dict(config.items('db'))
     conn = psycopg2.connect(**params)
-    conn.autocommit = False 
+    conn.autocommit = False
+    conn.set_isolation_level(extensions.ISOLATION_LEVEL_SERIALIZABLE) 
     with conn.cursor() as cur: 
         cur.execute('''
             PREPARE QueryReservationExists AS 
@@ -71,15 +72,14 @@ def list_op(conn):
 
 # TODO: reserve a room on a specific date and period, also saving the user who's the reservation is for
 def reserve_op(conn):
-    abbr = input('Abbreviation: ')
-    room = input('Room: ')
+    abbr = input('Abbreviation(AES/JSS): ')
+    room = input('Room(210/230): ')
     date = input('Date (YYYY-MM-DD): ')
     period = input('Period (A-H): ')
-    user = input('User: ')
+    user = input('User(1-3): ')
 
     with conn.cursor() as cur:
         # Wrapped in try/except to rollback if error occurs
-        conn.set_isolation_level(extensions.ISOLATION_LEVEL_SERIALIZABLE)
         try : 
             # check if reservation exists
             cur.execute('EXECUTE QueryReservationExists (%s, %s, %s, %s);', (abbr, room, date, period))
@@ -109,7 +109,6 @@ def reserve_op(conn):
 # TODO: delete a reservation given its code
 def delete_op(conn):
     code = input('\nPlease Enter Reservation Code you wish to delete: ')
-    conn.set_isolation_level(extensions.ISOLATION_LEVEL_SERIALIZABLE)
     with conn.cursor() as cur:
         try:
             cur.execute('EXECUTE QueryReservationExistsByCode (%s);', (code,))
