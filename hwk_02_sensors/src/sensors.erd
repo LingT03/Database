@@ -6,6 +6,7 @@
 erdiagram sensors
 notation=crowsfoot
 
+<<<<<<< HEAD
 entity Sensors { }
 entity Types { }
 entity Manufacturers { }
@@ -13,3 +14,44 @@ entity Measurements { }
 entity Readings { }
 
 
+=======
+entity Sensors { 
+    
+}
+
+entity Types { 
+   
+}
+
+entity Manufacturers { 
+    
+}
+
+entity Measurements { 
+   
+}
+
+entity Readings {
+      
+}
+
+relationship Use {
+    Sensors [1..1] -> Types [1..N]
+}
+
+relationship Possess {
+    Sensors [1..N] -> Measurements [1..N]
+}
+
+relationship Builds {
+    Sensors [0..N] -> Manufacturers [1..1]
+}
+
+relationship Records {
+<<<<<<< HEAD
+    Measurements [1..1] -> Readings [0..N]
+=======
+    Measurements [1..N] -> Readings [0..N]
+>>>>>>> 8e679fb (Updated files)
+}
+>>>>>>> dbbb5ec (updates)
