@@ -1,0 +1,36 @@
+erdiagram Recipe 
+notation = crowsfoot 
+
+entity Recipes {
+    id key 
+    name  
+}
+
+entity Tags {
+    meal_type key 
+}
+
+entity Ingredients {
+    code key 
+    description
+}
+
+entity Steps {
+    seq_number
+    description
+}
+
+
+relationship Lists {
+
+}
+
+relationship Has {
+
+}
+
+relationship Contains {
+ }
+/*
+    This is a comment
+*/

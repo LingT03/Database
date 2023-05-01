@@ -47,7 +47,9 @@ pip3 install psycopg2-binary
 This time, let's map the internal (containter) Postgres port to your computer's port using the following (making sure you update the command using your own settings for the volume mapping):
 
 ```
-docker run --rm --name postgres -e POSTGRES_PASSWORD=135791 -v /Users/tmota/devel/teach/__23SCS3810_DB/postgres:/var/lib/postgresql/data -p 5432:5432 postgres
+
+docker run --rm --name postgres -e POSTGRES_PASSWORD=135791 -v /Users/lingthang/CSdatabase/postgres:/var/lib/postgresql/data -p 5432:5432  postgres
+
 ```
 
 # Connect to Postgress from Python

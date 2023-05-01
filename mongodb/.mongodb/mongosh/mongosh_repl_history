@@ -1,0 +1,24 @@
+db.employees.aggregate([ { $group: { _id: "$department", /* group by department*/ employees: { $sum: 1 } /* count the number of employees per department*/ } }, { $sort: { employees: -1 } /* sort in descending order*/ }, { $limit: 1 }, { $project: { _id: true } }]);
+db.employees.aggregate([ { $group: { _id: "$department", /* group by department*/ employees: { $sum: 1 } /* count the number of employees per department*/ } }, { $sort: { employees: -1 } /* sort in descending order*/ }, { limit: 1 }, { $project: { _id: true } }]);
+db.employees.aggregate([ { $unwind: "$projects" }])
+db.employees.aggregate([ { $group: { _id: "$department", /* group by department*/ employees: { $sum: 1 } /* count the number of employees per department*/ } }, { $sort: { employees: -1 } /* sort in descending order*/ }, { limit: 1 }, { $project: { _id: 0, department: "$_id", employees: 1 } }]);
+db.employees.aggregate([ { $group: { _id: "$department", /* group by department*/ employees: { $sum: 1 } /* count the number of employees per department*/ } }, { $sort: { _id: -1 } /* sort in descending order*/ }]);
+db.employees.insertMany([ { name: 'John', department: 'sales', projects: ['bluffee', 'jomoorjs', 'auton'] }, { name: 'Mary', department: 'sales', projects: ['codete', 'auton'] }, { name: 'Peter', department: 'hr', projects: ['auton', 'zoomblr', 'instory', 'bluffee'] }, { name: 'Janet', department: 'marketing' }, { name: 'Sunny', department: 'marketing' }, { name: 'Winter', department: 'marketing', projects: ['bluffee', 'auton'] }, { name: 'Fall', department: 'marketing', projects: ['bluffee', 'scrosnes'] }, { name: 'Summer', department: 'marketing' }, { name: 'Sam', department: 'marketing', projects: ['scrosnes'] }, { name: 'Maria', department: 'finances', projects: ['conix', 'filemenup', 'scrosnes', 'specima', 'bluffee'] }])
+use employees
+db.students.find({"year": 2022}, {"name": 1})
+print("a selection and projection:")
+db.students.find({}, {"name": 1})
+print("a simple projection:")
+db.students.find({"year": 2022})
+print("a simple select:")
+db.students.find()
+print("list all of the documents in students:")
+db.students.insert({"name": "Jane", "year": 2022, "major": "Chemistry"})
+db.students.insert({"id": 2, "name": "Anna", "courses": ["CS120", "CS265"]})
+db.students.insert({"id": 1, "name": "John"})
+db.createCollection("students")
+use students
+exit({"id": 1, "name": "John"})
+db.createCollection("students")
+use students
+exit

@@ -7,10 +7,15 @@ entity Shippings {
 }
 
 weak entity Items { 
-    seq_number partial-key
-    description 
+    seq_number partial-key // unique withing an order // weak // takes from shipping order number
+    description // attribute
 }
 
 weak relationship has { 
     Shippings[1] -> Items[0..N]
 }
+/* 
+    Shippings(order_number: integer, address: string)
+    Items(order_number: integer, seq_number: integer, description: string)
+    has(Shipping_order_number: integer, Item_seq_number: integer)
+*/

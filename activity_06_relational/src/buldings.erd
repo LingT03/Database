@@ -14,3 +14,7 @@ weak entity Rooms {
 weak relationship has {
     Buildings[1] -> Rooms[0..N]
 }
+/*
+    Building(name: string, address: string)
+    Room(building_number: string, floor: int, number: int)
+*/

@@ -1,4 +1,22 @@
 CS3810: Principles of Database Systems
 Instructor: Thyago Mota
-Student: 
+Student: Ling Thang 
 Description: An Relational Schema for a Ticketing System
+
+Event(event_code*: Integer, title: String, season: String, year: Integer, venue_id*: Integer)
+EventDates (event_date*: Date, event_time*: time, event_code*: Integer, venue_id*: Integer)
+Venue(venue_id*: Integer, name: String)
+Sector(sector_name*: String, venue_id*: Integer, total_seats: Integer)
+Seat(seat_number*: Integer, sector_name*: String, status: Boolean, sell_price: Float) 
+Customer(email*: String, name: String, phone: Integer, credit_card: Integer, billing_address: String)
+Booking(booking_id*: Integer, email*: String, event_code*: Integer,  event_date*: Date, event_time*: Time, venue_id*: Integer, sector_name*: String, seat_id*: Integer)
+
+Bonus Point:
+
+Part One: *Gets Coresponding Information*
+σ(date_time = '02/20/23 8:00 PM')(Event ⨝ Booking) // Let's call this relation X
+
+Part Two: *Gets sector prices*
+X ⨝ Sector ⨝ Seat // Let's call this relation Y
+
+π(sector_name, sell_price)(Y) // projects the sector name and seat price of data from relation Y

@@ -2,13 +2,27 @@ Study carefully the conceptual data model for an “employee time tracking syste
 
 ![pic1.png](pics/pic1.png)
 
-An employee is uniquely identified by a number (the “id” attribute).  For each employee, the system stores the employee’s name, sex (0: not known, 1: male, 2: female, 3: not applicable), and hourly wage. Some employees are supervisors and are not paid by the hour. Those employees earn a fixed salary instead. A supervisor can (potentially) supervise many employees. An employee can have up to one (designated) supervisor. Employees that are supervisors do not have a supervisor.  
+An employee is uniquely identified by a number (the “id” attribute). 
+For each employee, the system stores the employee’s name, sex (0: not known, 1: male, 2: female, 3: not applicable), and hourly wage. 
 
-Wage-paid employees have to register their working hours in the system by entering the date when they worked, starting and ending hours. All registered working hours need to be approved by the employee’s (designated) supervisor in order to be eligible for payment.  Because supervisors change from time to time, the system needs to maintain (for auditing purposes) the information about which supervisor approved which hours.  
+Some employees are supervisors and are not paid by the hour. 
+    Those employees earn a fixed salary instead. 
+
+A supervisor can (potentially) supervise many employees. 
+
+An employee can have up to one (designated) supervisor. Employees that are supervisors do not have a supervisor.  
+
+Wage-paid employees have to register their working hours in the system by entering the date when they worked, starting and ending hours. 
+
+All registered working hours need to be approved by the employee’s (designated) supervisor in order to be eligible for payment.  
+
+Because supervisors change from time to time, the system needs to maintain (for auditing purposes) the information about which supervisor approved which hours.  
 
 ## Part A: Relational Model 
 
-Your first task in this activity is to derive a Relational Model from the conceptual E/R Model detailed in the previous section.  Use the techniques described in the textbook (section 4.5, pages 157-165) and discussed in class to determine how to create relations from the entity sets and relationships of a given E/R Model.  Write your model as a relational schema identifying each  relation, their attributes, attribute domains, and primary keys. Any attribute domain that is not primitive (integer, floating-point, text, char, boolean, date, or time) must be explicitly defined in your solution.   
+Your first task in this activity is to derive a Relational Model from the conceptual E/R Model detailed in the previous section.  Use the techniques described in the textbook (section 4.5, pages 157-165) and discussed in class to determine how to create relations from the entity sets and relationships of a given E/R Model.  Write your model as a relational schema identifying each  relation, their attributes, attribute domains, and primary keys. 
+
+!!Any attribute domain that is not primitive (integer, floating-point, text, char, boolean, date, or time) must be explicitly defined in your solution.!!
 
 ## Part B: Relational Algebra
 

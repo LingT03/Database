@@ -1,66 +1,24 @@
 // CS3810: Principles of Database Systems
 // Instructor: Thyago Mota
-// Student: 
+// Student: Ling Thang 
 // Description: An ERD for a Paper Reviewing System
 
-erdiagram reviews
-notation=crowsfoot
+erdiagram ConferenceReviews
+notation = crowsfoot
 
-entity Papers  { 
-    
+entity Papers { 
+    id key
+    title
+    abstract
+    efile_name
 }
 
 entity Authors { 
-    
+    email key
+    first_name
+    last_name
 }
 
 entity Reviewers { 
-<<<<<<< HEAD
     
 }
-=======
-    Reviewer_email key
-    first_name
-    last_name
-    phone_number
-    affiliation
-    interest_topic
-}
-
-<<<<<<< HEAD
-<<<<<<< HEAD
-relationship Writes {
-=======
-relationship writes {
->>>>>>> bae861b (HW03 Fin)
-=======
-relationship Writes {
->>>>>>> b648e83 (hw03 fin)
-    Authors [1..N] -> Papers [0..N]
-    Contact_Author
-}
-
-<<<<<<< HEAD
-<<<<<<< HEAD
-relationship Reviews {
-    Reviewers [1..N] -> Papers [0..N]
-    Rating_techinical_merit 
-=======
-relationship rates {
-    Reviewers [1..N] -> Papers [0..N]
-    Rating_techinical_merit
->>>>>>> bae861b (HW03 Fin)
-=======
-relationship Reviews {
-    Reviewers [1..N] -> Papers [0..N]
-    Rating_techinical_merit 
->>>>>>> b648e83 (hw03 fin)
-    Rating_readibility 
-    Rating_originiality 
-    Rating_relevance
-    recommendation
-    public_comments
-    private_comments
-}
-
->>>>>>> dbbb5ec (updates)

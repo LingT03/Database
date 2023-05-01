@@ -1,0 +1,28 @@
+# Part A 
+
+Employees(id:int, name: string, wage: int, sex: int, suid: int)
+Supervisors(empid: int, salary: doubel)
+Working_Hours(emid: int, date: date, start: time, end: time, hour: int)
+
+# Part C
+
+A. Selection_sex=1_(Employees)
+B. π_name_(Selection_sex=2_(Employees))
+C. Supervisors := PI(Supervisor ⨝ Employees)
+D. Employees := PI(Employees ⨝ Supervisors)
+    S!name! = !Mary! and 
+    E.id_emp = S!id 
+E. π_start, end_(Employees ⨝ Working_Hours
+    E.id = w.emp_id 
+    w.date = !sept-15-2020)
+F. π_name_(Employees ⨝ Working_Hours
+    E.id = w.emp_id
+    w.date.month = !September! and 
+    w.sup_id = Null)
+G. π_name_(Selection_Supervisor
+        salary>65000 ) // condition 
+H. Selection_(Employee ⋉ Supervisor) 
+    sup_id = 0
+    
+I.
+J.
