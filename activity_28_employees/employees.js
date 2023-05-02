@@ -113,11 +113,68 @@ db.employees.aggregate([
   {
     $unwind: "$projects",
   },
+  {
+    $project: {
+      projects: 1,
+      _id: 0,
+    },
+  },
+  {
+    $group: {
+      _id: "$projects",
+    },
+  },
+  {
+    $sort: {
+      _id: 1,
+    },
+  },
 ]);
 
 /* number of employees per project (alphabetical order too)
 hint: same as the previous one but using $sum to count the number of employees */
 
+db.employees.aggregate([
+  {
+    $unwind: "$projects",
+  },
+
+  {
+    $project: {
+      projects: 1,
+      _id: 0,
+    },
+  },
+
+  {
+    $group: {
+      _id: "$projects",
+      employees: { $sum: 1 },
+    },
+  },
+  {
+    $sort: {
+      _id: 1,
+    },
+  },
+]);
+
 /* of the employees that work on projects, what it is the average number of projects that they work on
 hint: use match to filter the employees that work on projects; then usematchtofiltertheemployeesthatworkonprojects;thenusesize 
 to project the number of projects per employee; finally, compute the average of projects that each employee works on */
+
+db.employees.aggregate([
+  {
+    $match: {
+      projects: { $exists: true }, // filter employees that work on projects
+    },
+  },
+
+  {
+    $project: {
+      _id: false, // false because we do not want to show the _id field
+      name: "$name",
+      number_of_projects: { $size: "$projects" },
+    },
+  },
+]);
