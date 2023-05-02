@@ -154,30 +154,66 @@ INSERT INTO FilmRatings VALUES (6716,1,2), (6716,2,5), (29200,2,4), (29200,4,5),
 (76634,1,4), (76634,2,2), (76634,3,3), (76634,4,2), (76634,5,3), (47673,1,4), (47673,2,2), (47673,3,4), (47673,4,1), (47673,5,4), (62217,1,2), (62217,3,1), (62217,4,1), (62217,5,5), (68276,1,2), (68276,2,3), (68276,3,1), (68276,4,5), (68276,5,3);
 
 -- a) the number of star wars films
+    SELECT COUNT(*) FROM Films;
 
 -- b) the age group (description) that has the most fans
+    SELECT fans.age, agegroups.description, Count(fans.age)
+    FROM Fans 
+    INNER JOIN agegroups ON fans.age = agegroups.seq 
+    WHERE agegroups.seq = (SELECT age FROM Fans GROUP BY age ORDER BY COUNT(age) DESC LIMIT 1)
+    GROUP BY fans.age, agegroups.description;
 
--- c) the education level (description) with the least number of fans
+    -- OR: which displays the top 4 age groups with the most fans in descending order
+    SELECT fans.age, agegroups.description, Count(fans.age)
+    FROM Fans 
+    INNER JOIN agegroups ON fans.age = agegroups.seq 
+    GROUP BY fans.age, agegroups.description
+    ORDER BY COUNT(fans.age) DESC LIMIT 4;
+
+
+-- c) the education level (description) with the least number of fans 
+    SELECT fans.education, educationlevels.description, Count(fans.education)
+    FROM Fans 
+    INNER JOIN educationlevels ON fans.education = educationlevels.seq
+    WHERE educationlevels.seq = (SELECT education FROM Fans GROUP BY education ORDER BY COUNT(education) ASC LIMIT 1) 
+    GROUP BY fans.education, educationlevels.description;
+
+    -- OR: Which displays the top 4 education levels with the least number of fans in ascending order
+    SELECT fans.education, educationlevels.description, Count(fans.education)
+    FROM Fans 
+    INNER JOIN educationlevels ON fans.education = educationlevels.seq 
+    GROUP BY fans.education, educationlevels.description
+    ORDER BY COUNT(fans.education) ASC LIMIT 4;
 
 -- d) the name of the star wars characters in alphabetical order
+    Select name FROM Characters ORDER BY name;
 
 -- e) the star wars characters that have no fan ratings 
+    SELECT * from CharacterRatings WHERE rating IS NULL;
 
 -- f) the top 3 star wars characters based on fan ratings, showing their names and the average rating (rounded to 2 decimals) that they received 
+    
 
 -- g) The ids of the fans that gave a rating of 1 for "Darth Vader", in ascending order, so that they be banned from future star wars views
 
+
 -- h) the top rated star wars film by the fans 
+
 
 -- j) the top rated film by fans with income '$150,000+'
 
+
 -- k) the number of ratings AND the average rating received by "Princess Leia", rounded to 2 decimals
+
 
 -- l) the average rating of "Star Wars: Episode V The Empire Strikes Back", rounded to 2 decimals
 
+
 -- m) the name of the character that received the least number of ratings 
 
+
 -- n) the favorite character according the yongest fan audience
+
 
 -- o) the income levels (descriptions) that has at least 100 fans, ordered by income sequential number
 

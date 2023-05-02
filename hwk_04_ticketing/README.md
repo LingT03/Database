@@ -35,3 +35,14 @@ To make it easier you can break down your explanation into two parts. For exampl
 
 2) natural join between the above relation and Z 
 
+# Professor Feedback
+venude_id is not part of Events key 
+EventDates does not need venueId
+Seats is missing venue_id
+sell_price is not in Seats 
+missing Pricing relation 
+bonus point: your model was incorrect so I cannot evaluate your attempt 
+total: 4
+
+# Fixes 
+

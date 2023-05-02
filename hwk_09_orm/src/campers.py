@@ -1,7 +1,7 @@
 """
 CS3810: Principles of Database Systems
 Instructor: Thyago Mota
-Student: 
+Student: Ling Thang 
 Description: ORM script to show campers in a given program
 """
 
@@ -16,18 +16,18 @@ Base = declarative_base()
 '''
 This class represents a camper entity
 '''
+# TODO #1 complete the mapping of class Camper and table campers
+
 class Camper(Base): 
-    # TODO #1 complete the mapping of class Camper and table campers
-    '''
-    __tablename__ = ...
-    id     = ...
-    name   = ...
-    dob    = ...
-    gender = ...
-    '''
-    
+    __tablename__ = 'campers'
+    id     = Column(Integer, primary_key=True)
+    name   = Column(String)
+    dob    = Column(Date)
+    gender = Column(String(1))
+
     # programs will allow the retrieval of all programs that a camper is in via the intermediate table "participates"
     programs = relationship("Program", secondary="participates")
+    # TODO #2 complete the mapping of class Participate and table participates
 
     def __str__(self): 
         str_gender = self.gender
@@ -39,24 +39,20 @@ class Camper(Base):
 This class represents the intermediate table between campers and programs 
 '''
 class Participate(Base):
-    # TODO #2 complete the mapping of class Participate and table participates
-    '''
-    __tablename__ = ...
-    program = Column(..., ForeignKey(...), primary_key=True) 
-    camper = Column(..., ForeignKey(...), primary_key=True)
-    '''
+    __tablename__ = 'participates'
+    program = Column(String, ForeignKey('programs.name'), primary_key=True) 
+    camper = Column(Integer, ForeignKey('campers.id'), primary_key=True)
 
 '''
 This class represents a program entity
 '''
 class Program(Base):
-    # TODO #3 complete the mapping of class Program and table programs
-    '''
-    __tablename__ = ...
-    name = Column(..., primary_key=True) 
-    descr = Column(...)
-    price = Column(...)
-    '''
+# TODO #3 complete the mapping of class Program and table programs
+
+    __tablename__ = 'programs'
+    name = Column(String, primary_key=True) 
+    descr = Column(String)
+    price = Column(Double)
 
     # campers will allow the retrieval of all campers that are enrolled in a program via the intermediate table "participates"
     campers = relationship("Camper", secondary="participates", back_populates="programs")
@@ -82,13 +78,14 @@ if engine:
     print('Connection to Postgres database ' + params['dbname'] + ' was successful!')
     Session = sessionmaker(engine)
     session = Session()
+
     # TODO #4 ask the user for the name of a program 
-    '''
-    name = ... 
-    '''
 
-    # retrieves program info without any SQL (wow!)
-    program = session.get(Program, name)
-
-    # TODO #5 check if the program exists and if yes show the program info including all campers enrolled in the program 
-    
+    name = input('name? ') 
+    program = session.query(Program).filter(Program.name == name).first()
+    if not program:
+        print('Program does not exist!')
+    else:
+        print(program)
+        for camper in program.campers:
+            print('\t' + str(camper))

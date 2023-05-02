@@ -1,17 +1,22 @@
 // CS3810: Principles of Database Systems
 // Instructor: Thyago Mota
-// Student: 
+// Student: Ling Thang 
 // Description: An ERD for a Paper Reviewing System
 
-erdiagram reviews
-notation=crowsfoot
+erdiagram ConferenceReviews
+notation = crowsfoot
 
-entity Papers  { 
-    
+entity Papers { 
+    id key
+    title
+    abstract
+    efile_name
 }
 
 entity Authors { 
-    
+    email key
+    first_name
+    last_name
 }
 
 entity Reviewers { 

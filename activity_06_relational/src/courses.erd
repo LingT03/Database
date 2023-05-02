@@ -14,3 +14,9 @@ entity Courses {
 relationship enrolls_in {
     Students[0..N] -> Courses[0..N]
 }
+
+/* 
+    Students(id: integer, name: string) # key is id
+    Courses(number: integer, title: string) # key is number
+    Attends(student_id: integer, course_number: integer) # use the keys from other entities to draw a relationship
+*/

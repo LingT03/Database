@@ -45,5 +45,13 @@ CREATE PROCEDURE number_albums(IN art VARCHAR(30))
         END;
     $$;
 
+-- Creating a type (for fun)
+CREATE TYPE year_title_tracks AS ( 
+    year INT, 
+    title VARCHAR(30), 
+    tracks INT 
+);
 
-
+CREATE TABLE Test (
+    id year_title_tracks PRIMARY KEY
+);
