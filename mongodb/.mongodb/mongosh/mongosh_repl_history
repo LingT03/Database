@@ -1,3 +1,20 @@
+db.books.aggregate([ { $match: { pages: { $gt: 100, $lt: 500 } } }, { $project: { _id: 0, title: 1 } }]);
+db.books.aggregate([ { $group: { _id: "$date.year", count: { $sum: 1 } } }, { $sort: { _id: 1 } }]);
+db.books.aggregate([ { $match: { "date.year": 2011 } }, { $project: { _id: 0, title: 1, date: 2 } }]);
+db.books.aggregate([ { $match: { "date.year": 2011 } }, { $project: { _id: 0, title: 1, date: 3 } }]);
+db.books.aggregate([ { $match: { "date.year": 2011 } }, { $project: { _id: 0, title: 1 } }]);
+db.books.aggregate([ { $match: { author: "Kyle Banker" } }, { $project: { _id: 0, title: 1 } }]);
+db.books.aggregate([ { $project: { _id: 0, title: 1 } }]);
+db.books.insertOne({ isbn: '1617291609', title: 'MongoDB in Action', author: 'Kyle Banker', date: { year: 2012, month: 5 }, pages: 350 });
+db.books.insertOne({ isbn: '1933988797', title: 'Flex on Java', author: 'Andres Almiray', date: { year: 2010, month: 10 }, pages: 95 });
+db.books.insertOne({ isbn: '1617290084', title: 'Specification by Example', author: 'Gojko Adzic', date: { year: 2011, month: 6 }, pages: 840 });
+db.books.insertOne({ isbn: '1935182722', title: 'Android in Action, Second Edition', author: 'Robi Sen', date: { year: 2011, month: 1 }, pages: 120 });
+db.books.insertOne({ isbn: '1933988673', title: 'Unlocking Android', author: 'Charlie Collins', date: { year: 2009, month: 4 }, pages: 250 });
+show databases
+use book;
+db.dropDatabase()
+delete boosk;
+use boosk; 
 db.students.aggregate([ { $unwind: "$majors" /* unwind to get one major per document*/ }, { $lookup: { from: "majors", localField: "majors", foreignField: "_id", as: "majors_detail" } }, { $unwind: "$majors_detail" /* unwind to get one major per document*/ }, { $group: { _id: "$_id", name: { $first: "$name" }, majors: { $push: "$majors_detail" } /* pused major_detail into major associated with a student*/ } }, { $project: { _id: 1, name: 1, majors: 1 } }, { $sort: { _id: 1 } }]);
 db.students.aggregate([ { $unwind: "$majors" /* unwind to get one major per document*/ }, { $lookup: { from: "majors", localField: "majors", foreignField: "_id", as: "majors_detail" } }, { $unwind: "$majors_detail" /* unwind to get one major per document*/ }, { $group: { _id: "$_id", name: { $first: "$name" }, majors: { $push: "$majors_detail" } /* pused major_detail into major associated with a student*/ } }, { $project: { _id: 1, name: 1, majors: 1, $sort: { _id: 1 } } }]);
 db.students.aggregate([ { $unwind: "$majors" /* unwind to get one major per document*/ }, { $lookup: { from: "majors", localField: "majors", foreignField: "_id", as: "majors_detail" } }, { $unwind: "$majors_detail" /* unwind to get one major per document*/ }, { $group: { _id: "$_id", name: { $first: "$name" }, majors: { $push: "$majors_detail" } /* pused major_detail into major associated with a student*/ } }, { $project: { _id: 1, name: 1, majors: 1 }, $sort: { _id: 1 } }]);
@@ -86,6 +103,10 @@ exit
 exit({"id": 1, "name": "John"})
 db.createCollection("students")
 use students
+exit
+db.createCollection("students")
+use students
+exituse students
 exit
 db.createCollection("students")
 use students
