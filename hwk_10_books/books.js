@@ -1,7 +1,7 @@
 // CS 3810: Principles of Database Systems
 // Homework 10: The books database
 // Instructor: Thyago Mota
-// Student:
+// Student: Ling Thang
 
 // db creation
 //use books;
