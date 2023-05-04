@@ -77,7 +77,7 @@ def reserve_op(conn):
     date = input('Date (YYYY-MM-DD): ')
     period = input('Period (A-H): ')
     user = input('User(1-3): ')
-    #test
+    
     with conn.cursor() as cur:
         # Wrapped in try/except to rollback if error occurs
         try : 
